@@ -7,6 +7,8 @@ var app = express();
 //sets an initial port
 var PORT = process.env.PORT || 8080;
 
+app.use(express.static('public/assets'));
+
 //sets up express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 
