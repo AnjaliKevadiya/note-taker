@@ -1,24 +1,24 @@
-//include express dependencies
+// include express dependencies
 var express = require("express");
+const apiRoutes = require("./routes/apiRoutes");
+const htmlRoutes = require("./routes/htmlRoutes");
 
-//tell node to create server
+// tell node to create server
 var app = express();
 
-//sets an initial port
+// create a port
 var PORT = process.env.PORT || 8080;
 
+// sets up express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static('public/assets'));
 
-//sets up express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
+// routers
+app.use("/api", apiRoutes);
+app.use("/", htmlRoutes);
 
-app.use(express.json());
-
-//routers
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
-
-//listener
+// Start the server on the port
 app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
 });
