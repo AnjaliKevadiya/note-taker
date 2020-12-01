@@ -1,14 +1,14 @@
 const router = require("express").Router();
 const store = require("../db/store");
 
-router.get("/api/notes", function(req, res) {
+router.get("/notes", function(req, res) {
     store
         .getNotes()
         .then((notes) => res.json(notes))
         .catch((err) => res.status(500).json(err));
 });
 
-router.post("/api/notes", function(req, res) {
+router.post("/notes", function(req, res) {
 
     let id;
     if(notesData.length > 0) {
@@ -22,7 +22,7 @@ router.post("/api/notes", function(req, res) {
     res.json(true);
 });
 
-router.delete("/api/notes/:id", function(req, res) {
+router.delete("/notes/:id", function(req, res) {
     console.log("delete data" + req.body);
 });
 
