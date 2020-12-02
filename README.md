@@ -31,7 +31,9 @@ For users that need to keep track of a lot of information, it's easy to forget o
 ## Acceptance Criteria
 
 Application should allow users to create and save notes.
+
 Application should allow users to view previously saved notes.
+
 Application should allow users to delete previously saved notes.
 
 ## Installation
