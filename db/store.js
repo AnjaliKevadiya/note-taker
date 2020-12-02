@@ -50,6 +50,15 @@ class Store {
             .then(() => newNote);
     }
 
+    // function to delete note
+    removeNote(id) {
+
+        // get all notes, remove the node of given id
+        return this.getNotes()
+            .then((notes) => notes.filter((note) => note.id !== id))
+            .then((filteredNotes) => this.write(filteredNotes))
+            .then(() => id);
+    }
 }
 
 module.exports = new Store();
