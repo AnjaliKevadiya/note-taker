@@ -16,12 +16,7 @@ class Store {
         return writeFileAsync("db/db.json", JSON.stringify(notes));
     }
 
-    // DEFINE A FUNCTION getNotes(). INSIDE THE FUNCTION ...
-    // 1. CALLS read() TO READ DATA FROM THE FILE AND CONVERT THE DATA 
-    //    FROM THE FILE INTO AN ARRAY OF OBJECTS USING JSON.parse() AND STORE IT TO A VARIABLE
-    // 2. THEN RETURN THE ARRAY TO THE CALLER
-    // 3. IF THE DATA IS EMPTY THEN RETURN AN EMPTY ARRAY TO THE CALLER
-
+    // function to get all notes
     getNotes() {
 
         return this.read().then((notes) => {
@@ -36,6 +31,28 @@ class Store {
             return parsedNotes;
         });
     }
+
+    // function which takes single note as input parameter
+    addNote(note) {
+
+        // destructing title and text from note
+        const { title, text } = note;
+
+        // if either title or text is empty throw an error
+        if (!title || !text) {
+            throw new Error("Note title and text cannot be blank");
+        }
+
+        // Add a unique id to the note using uuid package
+        const newNote = { title, text, id: uuidv1() };
+
+        // Get all notes, add the new note, write all the updated notes, return the newNote
+        return this.getNotes()
+            .then((notes) => [...notes, newNote])
+            .then((updatedNotes) => this.write(updatedNotes))
+            .then(() => newNote);
+    }
+
 }
 
 module.exports = new Store();
