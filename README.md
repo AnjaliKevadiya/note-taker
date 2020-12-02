@@ -1,4 +1,4 @@
-# note-taker
+# Note Taker
 
 ## Table of Contents
 
