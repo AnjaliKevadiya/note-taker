@@ -9,23 +9,10 @@ router.get("/notes", function(req, res) {
 });
 
 router.post("/notes", function(req, res) {
-
-    console.log(res.json);
     store
-        .addNote()
+        .addNote(req.body)
         .then((note) => res.json(note))
         .catch((err) => res.status(500).json(err));
-
-    // let id;
-    // if(notesData.length > 0) {
-    //     id = notesData[notesData.length - 1].id + 1;
-    // } else {
-    //     id = 1
-    // }
-    // req.body.id = id;
-    // notesData.push(req.body);
-    // console.log("data" + JSON.stringify(notesData));
-    // res.json(true);
 });
 
 router.delete("/notes/:id", function(req, res) {

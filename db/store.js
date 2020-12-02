@@ -18,11 +18,8 @@ class Store {
 
     // function to get all notes
     getNotes() {
-
         return this.read().then((notes) => {
-
             let parsedNotes;
-
             try {
                 parsedNotes = [].concat(JSON.parse(notes));
             } catch (err) {
