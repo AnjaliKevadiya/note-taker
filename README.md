@@ -41,12 +41,6 @@ Application should allow users to delete previously saved notes.
 To install necessary dependencies, run the following command:
 
 ```
-npm i
-```
-
-OR
-
-```
 npm install
 ```
 
